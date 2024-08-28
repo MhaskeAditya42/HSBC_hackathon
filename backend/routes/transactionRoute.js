@@ -19,7 +19,8 @@ const transactionController = require('../controllers/transactionController');
 
 transaction.post('/exportTransaction', transactionController.exportTransaction);
 
+transaction.get('/getTransactions', transactionController.getTransactions);
 
 
 
-module.exports = transaction;
+module.exports =transaction;

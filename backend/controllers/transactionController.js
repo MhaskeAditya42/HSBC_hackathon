@@ -50,6 +50,18 @@ const exportTransaction = async (req, res) => {
     }
 }
 
+const getTransactions = async (req, res) => {
+    try {
+        const transactions = await Transaction.find({});
+
+        res.send(transactions);
+    } catch (error) {
+        res.status(500).send({ status: 500, success: false, msg: error.message });
+    }
+}
+
+
 module.exports = {
-    exportTransaction
+    exportTransaction,
+    getTransactions
 }

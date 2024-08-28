@@ -2,10 +2,29 @@ import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js';
 
-ChartJS.cregister(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
+ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
-const BarChart = ({ data }) => {
+const BarChart = () => {
+  const [data, setData] = useState([]);
   
+  useEffect(() => {
+    // Fetch data from the API
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/getTransactions');
+        const result = await response.json();
+        if (result.success) {
+          setData(result.data);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // Process the data to calculate total amount spent per zipcode
   const zipCodeAmount = data.reduce((acc, item) => {
     acc[item.zipcodeOri] = (acc[item.zipcodeOri] || 0) + item.amount;
     return acc;

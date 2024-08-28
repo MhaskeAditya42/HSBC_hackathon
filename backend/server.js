@@ -29,15 +29,6 @@ mongoose.connect("mongodb+srv://adityamhaske711:LtwjJn8WymOzBi2f@hackathon-data.
 const User= require('./models/userModel');
 const transactions=require('./models/Transaction');
 
-// API key middleware for security
-// const authenticate = (req, res, next) => {
-//     const key = req.header('x-api-key');
-//     if (key && key === API_KEY) {
-//       next();
-//     } else {
-//       res.status(403).send('Forbidden');
-//     }
-//   };
 
 var transactionRoute=require('./routes/transactionRoute');
 
