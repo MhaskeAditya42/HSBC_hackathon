@@ -11,8 +11,6 @@ const path= require('path');
 
 
 
-
-
 dotenv.config();
 const app = express();
 app.use(cors());
@@ -42,6 +40,10 @@ const transactions=require('./models/Transaction');
 //   };
 
 var transactionRoute=require('./routes/transactionRoute');
+
+
+
+
 
 app.use('/',transactionRoute);
 
