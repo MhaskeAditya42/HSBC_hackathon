@@ -32,7 +32,7 @@ function App() {
         <ScatterPlot data={data} />
       </div>
       <div className="grid-item">
-        <p>Doughnut</p>
+        <p>Time Series</p>
         <DonutChart data={data} />
       </div>
     </div>

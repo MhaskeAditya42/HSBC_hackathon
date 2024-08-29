@@ -26,14 +26,16 @@ const exportTransaction = async (req, res) => {
         // Read and parse CSV file
         const jsonArray = await csv().fromFile(filePath);
         console.log(jsonArray);
-        const limitedJsonArray = jsonArray.slice(0, 100);
+        const limitedJsonArray = jsonArray.slice(0, 10000);
 
         const transactions = limitedJsonArray.map(item => {
             return {
                 step: parseInt(item.step, 10) || 0, 
                 customer: item.customer,
-                age: isNaN(parseInt(item.age, 10)) ? null : parseInt(item.age, 10),
-                gender: ['M', 'F', 'O'].includes(item.gender.toUpperCase()) ? item.gender.toUpperCase() : null, // Normalize gender
+                age:item.age,
+                //age: isNaN(parseInt(item.age, 10)) ? null : parseInt(item.age, 10),
+                gender:item.gender,
+                //gender: ['M', 'F', 'O'].includes(item.gender.toUpperCase()) ? item.gender.toUpperCase() : null, // Normalize gender
                 zipcodeOri: item.zipcodeOri,
                 merchant: item.merchant,
                 zipMerchant: item.zipMerchant,
